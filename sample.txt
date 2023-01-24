@@ -1,0 +1,42 @@
+The Google Maps Platform server rejected your request. The provided API key is invalid.
+
+
+from lxml import html
+import urllib.request
+url = 
+text = urllib.request.urlopen(url).read().decode('utf8')
+htmltree = html.fromstring(text)
+
+
+
+from bs4 import BeautifulSoup as bs
+import requests
+from urllib.request import Request, urlopen
+from lxml import html
+
+url = "https://www.bigbasket.com/pd/40100521/fresho-signature-cheese-chevere-log-fresh-rindless-block-200-g/?nc=cl-prod-list&t_pg=&t_p=&t_s=cl-prod-list&t_pos=1&t_ch=desktop"
+
+req = Request(url , headers={'User-Agent': 'Mozilla/5.0'})
+
+web_byte = urlopen(req).read()
+webpage = web_byte.decode('utf-8')
+webpage = html.fromstring(webpage)
+print(webpage)
+# soup = bs(url,"html.parser")
+# print(soup)
+# info = soup.find("h1",{"class":"GrE04"}).text
+# print(info)
+
+
+
+
+
+from mysql.connector import *
+
+
+mydb = mysql.connector.connect(user='root@locahost', password='root', database = 'prices')
+mycursor = mydb.cursor()
+mycursor.execute("SELECT product_name, price from products where dish = 'Kato Bacon Chicken Thigh'")
+myresult = mycursor.fetchall()
+for i in myresult:
+    print(i)
